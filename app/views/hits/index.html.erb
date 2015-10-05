@@ -1,0 +1,105 @@
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"><%= (@title || "History") %></h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                  <%= render "layouts/chart" %>
+                </div>
+                <div class="col-lg-4">
+                  <%= render "layouts/notice_card" %>
+                  <%= render "layouts/notice_card", :color=>"red" %>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Registered urls
+                        </div>
+                        <%= render :layout => "layouts/table" do %>
+                        <tr class="odd gradeX">
+                            <td>Trident</td>
+                            <td>Internet Explorer 4.0</td>
+                            <td>Win 95+</td>
+                            <td class="center">4</td>
+                            <td class="center">X</td>
+                        </tr>
+                        <tr class="even gradeC">
+                            <td>Trident</td>
+                            <td>Internet Explorer 5.0</td>
+                            <td>Win 95+</td>
+                            <td class="center">5</td>
+                            <td class="center">C</td>
+                        </tr>
+                        <tr class="odd gradeA">
+                            <td>Trident</td>
+                            <td>Internet Explorer 5.5</td>
+                            <td>Win 95+</td>
+                            <td class="center">5.5</td>
+                            <td class="center">A</td>
+                        </tr>
+                        <tr class="even gradeA">
+                            <td>Trident</td>
+                            <td>Internet Explorer 6</td>
+                            <td>Win 98+</td>
+                            <td class="center">6</td>
+                            <td class="center">A</td>
+                        </tr>
+                        <tr class="odd gradeA">
+                            <td>Trident</td>
+                            <td>Internet Explorer 7</td>
+                            <td>Win XP SP2+</td>
+                            <td class="center">7</td>
+                            <td class="center">A</td>
+                        </tr>
+                        <tr class="even gradeA">
+                            <td>Trident</td>
+                            <td>AOL browser (AOL desktop)</td>
+                            <td>Win XP</td>
+                            <td class="center">6</td>
+                            <td class="center">A</td>
+                        </tr>
+                        <tr class="gradeA">
+                            <td>Gecko</td>
+                            <td>Firefox 1.0</td>
+                            <td>Win 98+ / OSX.2+</td>
+                            <td class="center">1.7</td>
+                            <td class="center">A</td>
+                        </tr>
+
+                        <% end %>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+        <script>
+
+            new Morris.Line({
+              // ID of the element in which to draw the chart.
+              element: "<%= "hits_chart" %>",
+              // Chart data records -- each entry in this array corresponds to a point on
+              // the chart.
+              data: [
+                <%= yield %>
+              ],
+              // The name of the data record attribute that contains x-values.
+              xkey: "<%= x_key %>",
+              // A list of names of data record attributes that contain y-values.
+              ykeys: ["<%= y_keys %>"],
+              // Labels for the ykeys -- will be displayed when you hover over the
+              // chart.
+              labels: ["<%= y_labels %>"]
+            });
+
+        $(document).ready(function() {
+        });
+        </script>

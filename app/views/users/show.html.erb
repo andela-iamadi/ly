@@ -1,0 +1,35 @@
+<%= render "users/user_left_sidebar" %>
+<%= render "users/user_right_sidebar" %>
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Dashboard</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="col-lg-12">
+
+        <%= render "user_notice_cards" %>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Registered urls
+                </div>
+                <% cache("user_urls_table") do %>
+                  <%= render "users/user_urls_table" %>
+                <% end %>
+            </div>
+            <!-- /.panel -->
+            <%= render "layouts/new_url" if !@user_urls && @user_urls.empty? %>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->

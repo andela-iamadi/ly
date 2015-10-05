@@ -1,0 +1,20 @@
+<%= render :layout => "layouts/table", :locals => { :table_id => "url_table" } do %>
+<% if @url_hits && !@url_hits.empty? %>
+
+      <% count = 1; @url_hits.each do |hit| %>
+        <li>
+          <%= count %><br />
+            <%=link_to hit.referrer, hit.referrer %><br />
+            <%= hit.ip_address %><br />
+            <%= "#{hit.city}, #{hit.country}" %><br />
+            <%= "#{hit.zipcode}" %><br />
+            <%= "#{time_ago_in_words(hit.created_at, include_seconds: true)} ago\n#{hit.created_at.strftime("%a, %d %b %y")}" %>
+        </li>
+
+      <% count += 1; end %>
+    <% else %>
+      <li>
+        This link hasn't been visited yet
+      <br />
+    <% end %>
+<% end %>

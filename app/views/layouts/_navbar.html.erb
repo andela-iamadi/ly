@@ -1,0 +1,70 @@
+<% cache("navbar") do %>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top green-bg" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <%= link_to root_path, :class=>"navbar-brand pad-5 header-nav" do %>
+          <!-- <i class="fa fa-cloud-download fa-2x"></i> -->
+          <%= image_tag "lycent-icon1.png", :class=>"img-logo" %>
+          <span class="header-text">Lycent</span>
+        <% end %>
+    </div>
+    <!-- /.navbar-header -->
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-top-links navbar-right header-nav">
+      <!-- nav new url form -->
+        <li><%= render "layouts/url_form_in_navbar" %></li>
+      <!-- nav new url form -->
+      <li><a href="/">Home</a></li>
+      <li class="divider-vertical"></li>
+      <li><a href="<%= about_path %>">About</a></li>
+      <!-- /input-group -->
+      <% if current_user %>
+        <li>
+          <%= link_to user_path(current_user) do %>
+            <i class="fa fa-user fa-fw"></i>&nbsp;My dashboard
+          <% end %>
+        </li>
+
+        <li class="dropdown">
+            <a class="dropdown-toggle nav-profile" data-toggle="dropdown" href="#">
+
+                <%= image_tag(current_user.gravatar_url, :alt => "user", :class => "circle small_pic") %>
+                <%= "#{current_user.first_name} logged in"%>
+                <i class="fa fa-caret-down"></i>
+
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                  <%= link_to user_path(current_user) do %>
+                    <i class="fa fa-user fa-fw"></i>&nbsp;My dashboard
+                  <% end %>
+                </li>
+
+                <li class="divider"></li>
+                <li><%= link_to logout_path do %>
+                    <i class="fa fa-sign-out fa-fw"></i>Logout
+                    <% end %>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+        <% else %>
+        <li>
+          <%= link_to "Login | Sign Up", login_path %>
+        </li>
+
+      <% end %>
+    </ul>
+    <!-- /.navbar-top-links -->
+  </div><!-- / .div.collapse -->
+</nav>
+<% end %>
+<%= render_breadcrumbs(" / ", { class: 'no-margin-bottom', active_class: 'active' }) %>
+<%= render "layouts/flash" %>

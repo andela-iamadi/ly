@@ -1,0 +1,38 @@
+<%= render "users/user_sidebar" %>
+  <div id="page-wrapper">
+      <div class="row">
+          <div class="col-lg-12">
+              <h3 class="page-header"><%= @url.url if @url %></h3>
+          </div>
+          <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+      <div class="row">
+          <div class="col-lg-8">
+            <%= render :layout => "layouts/chart", :locals => {x_key: "days", y_keys: "hits", y_labels: "impact"} do %>
+              <% @url_hits.each do %>
+              { year: '2012', value: 20 }
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-lg-4">
+            <% cache("urls_notice_cards") do %>
+              <%= render "urls_notice_cards" %>
+            <% end %>
+          </div>
+          <div class="col-lg-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      Registered urls
+                  </div>
+                  <%= render "urls/url_details_table" %>
+              <!-- /.panel -->
+
+              </div>
+              <!-- /.panel -->
+          </div>
+          <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+  </div>
+  <!-- /#page-wrapper -->

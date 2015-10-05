@@ -1,0 +1,22 @@
+<% table_id ||= "lycent-dataTables" %>
+<!-- /.panel-heading -->
+<div class="panel-body">
+    <div class="dataTable_wrapper">
+        <table class="table table-striped table-bordered table-hover" id="<%= table_id %>">
+
+              <%= yield %>
+
+        </table>
+    </div>
+    <!-- /.table-responsive -->
+
+</div>
+<!-- /.panel-body -->
+
+<script>
+
+    $("#<%= table_id || 'lycent-dataTables' %>").DataTable({
+            responsive: true
+    });
+
+</script>

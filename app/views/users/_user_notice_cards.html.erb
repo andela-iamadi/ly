@@ -1,0 +1,11 @@
+<% cache("user_urls_notice_cards") do %>
+  <div class="col-lg-4">
+    <%= render "layouts/notice_card", :color=>"yellow", :icon=>"support", :count=>"#{@total_hits}", :comment=>"Referrals from other sites" %>
+  </div>
+  <div class="col-lg-4">
+    <%= render "layouts/notice_card", :color=>"primary", :icon=>"tasks", :count=>"#{@total_hits}", :comment=>"Total visits" %>
+  </div>
+<% end %>
+<div class="col-lg-4">
+  <%= render "layouts/notice_card", :color=>"green", :icon=>"send", :count=>"#{@current_user.urls_count || @user_urls.size}", :comment=>"Registered urls" %>
+</div>

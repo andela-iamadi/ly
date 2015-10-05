@@ -1,0 +1,41 @@
+<% chart_id ||= "morris_chart"; x_key ||= "time"; y_keys ||= "hits"; y_labels ||= "Hit"; %>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Hits over time
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+      <div id="<%= chart_id %>", style="height: 250px;"></div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    alert("here");
+
+        new Morris.Line({
+          // ID of the element in which to draw the chart.
+          element: "<%= chart_id %>",
+          // Chart data records -- each entry in this array corresponds to a point on
+          // the chart.
+          data: [
+            <%= yield %>
+            { year: '2012', value: 20 }
+            { year: '2013', value: 30 }
+            { year: '2014', value: 10 }
+            { year: '2015', value: 27 }
+          ],
+          // The name of the data record attribute that contains x-values.
+          xkey: "<%= x_key %>",
+          // A list of names of data record attributes that contain y-values.
+          ykeys: ["<%= y_keys %>"],
+          // Labels for the ykeys -- will be displayed when you hover over the
+          // chart.
+          labels: ["<%= y_labels %>"]
+        });
+
+    $(document).ready(function() {
+    });
+    </script>
